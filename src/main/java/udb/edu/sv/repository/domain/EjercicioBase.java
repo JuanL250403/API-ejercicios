@@ -3,11 +3,12 @@ package udb.edu.sv.repository.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.*;
 
 @Getter
 @Setter
 @MappedSuperclass
-public class EjercicioBase {
+public abstract class EjercicioBase<D extends DetalleRutinaBase> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,4 +30,7 @@ public class EjercicioBase {
 
     @Column(nullable = false)
     private Integer repeticiones;
+
+    @OneToMany(mappedBy = "ejercicio", fetch = FetchType.LAZY)
+    private List<D> detalle;
 }

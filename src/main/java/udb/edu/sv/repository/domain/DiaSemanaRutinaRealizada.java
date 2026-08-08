@@ -1,15 +1,12 @@
 package udb.edu.sv.repository.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-public class RutinaActual extends RutinaBase<DetalleRutinaActual, DiaSemanaRutinaActual>{
-
-
+@NoArgsConstructor
+@Builder
+public class DiaSemanaRutinaRealizada extends DiaSemanaRutinaBase<RutinaRealizada>{
 }

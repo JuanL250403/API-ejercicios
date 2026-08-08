@@ -1,17 +1,16 @@
 package udb.edu.sv.repository.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
-public class DetalleRutinaBase {
+@SuperBuilder
+public abstract class DetalleRutinaBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
