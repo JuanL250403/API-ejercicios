@@ -1,18 +1,15 @@
 package udb.edu.sv.repository.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.*;
 
-import java.time.DayOfWeek;
+import java.util.List;
 
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class RutinaBase<D extends DetalleRutinaBase, S extends DiaSemanaRutinaBase> {
+public abstract class RutinaBase<D extends DetalleRutinaBase> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +28,4 @@ public abstract class RutinaBase<D extends DetalleRutinaBase, S extends DiaSeman
 
     @OneToMany(mappedBy = "rutina", cascade = CascadeType.ALL)
     private List<D> detalle;
-
-    @OneToMany(mappedBy = "rutina", cascade = CascadeType.ALL)
-    private List<S> diasSemana;
 }
