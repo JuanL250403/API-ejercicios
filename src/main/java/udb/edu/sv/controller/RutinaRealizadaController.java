@@ -9,7 +9,7 @@ import udb.edu.sv.services.RutinaRealizadaService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rutinas/realizadas")
+@RequestMapping("/api/rutinas/realizadas")
 @RequiredArgsConstructor
 public class RutinaRealizadaController {
     private final RutinaRealizadaService rutinaRealizadaService;

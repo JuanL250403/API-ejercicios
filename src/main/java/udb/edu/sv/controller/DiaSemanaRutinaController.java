@@ -9,7 +9,7 @@ import udb.edu.sv.services.DiaSemanaService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/semana")
+@RequestMapping("/api/semana")
 @RequiredArgsConstructor
 public class DiaSemanaRutinaController {
 
