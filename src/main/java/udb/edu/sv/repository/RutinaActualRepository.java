@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import udb.edu.sv.repository.domain.RutinaActual;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface RutinaActualRepository extends JpaRepository<RutinaActual, Long> {
+public interface RutinaActualRepository extends JpaRepository<RutinaActual, UUID> {
 
     List<RutinaActual> findAllByUsuarioId(Long usuarioId);
 

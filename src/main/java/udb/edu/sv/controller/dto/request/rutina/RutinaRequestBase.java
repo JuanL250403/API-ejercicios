@@ -4,10 +4,11 @@ import lombok.Data;
 import udb.edu.sv.controller.dto.request.detalle.DetalleRutinaRequestBase;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public abstract class RutinaRequestBase<D extends DetalleRutinaRequestBase> {
-    private Long id;
+    private UUID id;
 
     private String nombre;
 

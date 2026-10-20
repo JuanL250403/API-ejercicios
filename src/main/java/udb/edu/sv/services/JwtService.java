@@ -33,6 +33,10 @@ public class JwtService {
     public String generarToken(Usuario user){
         HashMap<String, Object> detalles = new HashMap<>();
         detalles.put("id", user.getId());
+        detalles.put("nombre", user.getNombre());
+        detalles.put("peso", user.getPeso());
+        detalles.put("altura", user.getAltura());
+        detalles.put("fechaNacimiento", user.getFechaNacimiento().toString());
 
         return buildToken(detalles, user, expiracion);
     }

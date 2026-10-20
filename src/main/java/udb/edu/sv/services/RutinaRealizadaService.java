@@ -2,6 +2,7 @@ package udb.edu.sv.services;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import udb.edu.sv.controller.dto.request.rutina.RutinaRealizadaRequest;
 import udb.edu.sv.controller.dto.response.rutina.RutinaRealizadaResponse;
@@ -27,14 +28,16 @@ public class RutinaRealizadaService {
     private final UsuarioRepository usuarioRepository;
     private final EjercicioRealizadoMapper ejercicioRealizadoMapper;
 
-    public List<RutinaRealizadaResponse> obtenerRutinasUsuario(Long idUsuario) {
-        List<RutinaRealizada> rutinas = rutinaRealizadaRepository.findAllByUsuarioId(idUsuario);
+    public List<RutinaRealizadaResponse> obtenerRutinasUsuario() {
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<RutinaRealizada> rutinas = rutinaRealizadaRepository.findAllByUsuarioId(usuario.getId());
 
         return rutinaRealizadaMapper.toRutinaRealizadaResponseList(rutinas);
     }
 
-    public List<RutinaRealizadaResponse> sincronizarRutinas(Long idUsaruio, List<RutinaRealizadaRequest> rutinas) {
-        Usuario usuario = usuarioRepository.findById(idUsaruio).orElseThrow(() -> new EntityNotFoundException("Usuario no existente"));
+    public List<RutinaRealizadaResponse> sincronizarRutinas(List<RutinaRealizadaRequest> rutinas) {
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         List<RutinaRealizada> rutinasSincronizar = rutinas.stream().map(r -> {
             RutinaRealizada rutinaCrear = rutinaRealizadaMapper.toRutinaRealizada(r);

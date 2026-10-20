@@ -2,15 +2,15 @@ package udb.edu.sv.controller.dto.request.diaSemana;
 
 import lombok.Data;
 
-import java.time.DayOfWeek;
+import java.util.UUID;
 
 @Data
 public class DiaSemanaRutinaActualRequest {
-    private Long id;
+    private UUID id;
 
-    private DayOfWeek diaSemana;
+    private Integer diaSemana;
 
-    private Long idRutina;
+    private UUID idRutina;
 
     private boolean estado;
 }

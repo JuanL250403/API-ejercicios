@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @MappedSuperclass
@@ -12,6 +14,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public abstract class DetalleRutinaBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 }

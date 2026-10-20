@@ -2,11 +2,13 @@ package udb.edu.sv.controller.dto.request.ejercicio;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public abstract class EjercicioRequestBase {
-    private Long id;
+    private UUID id;
 
-    private Integer idEjercicio;
+    private String idEjercicio;
 
     private Integer series;
 

@@ -2,13 +2,15 @@ package udb.edu.sv.controller.dto.response.diaSemana;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class DiaSemanaRutinaActualResponse {
-    private Long id;
+    private UUID id;
 
-    private String diaSemana;
+    private Integer diaSemana;
 
-    private Long idRutina;
+    private UUID idRutina;
 
     private boolean estado;
 }

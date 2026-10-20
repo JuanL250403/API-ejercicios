@@ -19,7 +19,7 @@ public interface RutinaActualMapper {
 
     List<RutinaActualResponse> toRutinaActualResponseList(List<RutinaActual> rutinas);
 
-    @Mapping(source = "parteAnatomica.nombre", target = "parteAnatomica")
+    @Mapping(source = "parteAnatomica.id", target = "parteAnatomica")
     @Mapping(source = "detalle", target = "detalle", qualifiedByName = "toListaDetalle")
     RutinaActualResponse toRutinaActualResponse(RutinaActual rutina);
 

@@ -5,15 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public abstract class EjercicioResponseBase {
 
-    protected Long id;
+    protected UUID id;
 
-    protected Integer idEjercicio;
+    protected String idEjercicio;
 
     protected Integer series;
 

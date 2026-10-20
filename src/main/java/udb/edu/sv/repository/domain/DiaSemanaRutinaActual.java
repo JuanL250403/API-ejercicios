@@ -2,9 +2,8 @@ package udb.edu.sv.repository.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-import java.time.DayOfWeek;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -14,10 +13,9 @@ import java.time.DayOfWeek;
 @Builder
 public class DiaSemanaRutinaActual{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    protected UUID id;
 
-    private DayOfWeek diaSemana;
+    private Integer diaSemana;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rutina")

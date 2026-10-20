@@ -10,11 +10,10 @@ import java.util.*;
 @MappedSuperclass
 public abstract class EjercicioBase<D extends DetalleRutinaBase> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false)
-    private Integer idEjercicio;
+    private String idEjercicio;
 
     @Column(nullable = false)
     private Integer series;

@@ -15,13 +15,13 @@ public class DiaSemanaRutinaController {
 
     private final DiaSemanaService diaSemanaService;
 
-    @GetMapping("/{idUsuario}")
-    public List<DiaSemanaRutinaActualResponse> obtenerDiasSemanaUsuario(@PathVariable("idUsuario") Long idUsuario){
-        return diaSemanaService.obtenerDiasSemanaUsuario(idUsuario);
+    @GetMapping()
+    public List<DiaSemanaRutinaActualResponse> obtenerDiasSemanaUsuario(){
+        return diaSemanaService.obtenerDiasSemanaUsuario();
     }
 
-    @PostMapping("/{idUsuario}")
-    public List<DiaSemanaRutinaActualResponse> sincronizarDiasSemana(@PathVariable("idUsuario") Long id, @RequestBody List<DiaSemanaRutinaActualRequest> diasSemana) {
-        return diaSemanaService.sincronizarDiasSemana(diasSemana, id);
+    @PostMapping()
+    public List<DiaSemanaRutinaActualResponse> sincronizarDiasSemana(@RequestBody List<DiaSemanaRutinaActualRequest> diasSemana) {
+        return diaSemanaService.sincronizarDiasSemana(diasSemana);
     }
 }

@@ -4,14 +4,15 @@ import lombok.Data;
 import udb.edu.sv.controller.dto.response.detalle.DetalleRutinaResponseBase;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public abstract class RutinaResponseBase<D extends DetalleRutinaResponseBase> {
-    protected Long id;
+    protected UUID id;
 
     protected String nombre;
 
-    protected String parteAnatomica;
+    protected Long parteAnatomica;
 
     protected List<D> detalle;
 }

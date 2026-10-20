@@ -3,6 +3,7 @@ package udb.edu.sv.services;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import udb.edu.sv.controller.dto.request.rutina.RutinaActualRequest;
 import udb.edu.sv.controller.dto.response.rutina.RutinaActualResponse;
@@ -19,6 +20,7 @@ import udb.edu.sv.services.mapper.RutinaActualMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,24 +30,28 @@ public class RutinaActualService {
 
     private final RutinaActualMapper rutinaActualMapper;
 
+    private final DiaSemanaService diaSemanaService;
+
     private final EjercicioActualMapper ejercicioActualMapper;
     private final UsuarioRepository usuarioRepository;
     private final ParteAnatomicaRepository parteAnatomicaRepository;
     private final DetalleRutinaActualRepository detalleRutinaActualRepository;
 
-    public List<RutinaActualResponse> obtenerRutinasUsuario(Long idUsuario) {
-        List<RutinaActual> rutinas = rutinaActualRepository.findAllByUsuarioId(idUsuario);
+    public List<RutinaActualResponse> obtenerRutinasUsuario() {
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<RutinaActual> rutinas = rutinaActualRepository.findAllByUsuarioId(usuario.getId());
 
         return rutinaActualMapper.toRutinaActualResponseList(rutinas);
     }
 
     @Transactional
-    public List<RutinaActualResponse> sincronizarRutinas(Long idUsuario, List<RutinaActualRequest> rutinas) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new EntityNotFoundException("Usuario no existente"));
+    public List<RutinaActualResponse> sincronizarRutinas(List<RutinaActualRequest> rutinas) {
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        List<RutinaActual> rutinasExistentesUsuario = rutinaActualRepository.findAllByUsuarioId(idUsuario);
+        List<RutinaActual> rutinasExistentesUsuario = rutinaActualRepository.findAllByUsuarioId(usuario.getId());
 
-        List<Long> idDetalleSincronizar = new ArrayList<>();
+        List<UUID> idDetalleSincronizar = new ArrayList<>();
 
         List<RutinaActual> rutinasSincronizar = rutinas.stream().map(r -> {
             RutinaActual rutinaCrear = rutinaActualMapper.toRutinaActual(r);
@@ -66,7 +72,7 @@ public class RutinaActualService {
 
 
 
-        List<Long> idRutinasSincronizar = rutinasSincronizar.stream().map(r -> r.getId()).toList();
+        List<UUID> idRutinasSincronizar = rutinasSincronizar.stream().map(r -> r.getId()).toList();
         List<RutinaActual> rutinasEliminar = rutinasExistentesUsuario.stream().filter(r -> !idRutinasSincronizar.contains(r.getId())).toList();
         rutinaActualRepository.deleteAll(rutinasEliminar);
 

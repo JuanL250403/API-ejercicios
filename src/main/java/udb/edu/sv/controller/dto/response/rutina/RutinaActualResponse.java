@@ -10,6 +10,4 @@ public class RutinaActualResponse extends RutinaResponseBase<DetalleRutinaActual
     private boolean estado;
 
     private LocalDateTime fechaRealizacion;
-
-    private String diaSemana;
 }

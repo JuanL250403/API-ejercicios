@@ -10,10 +10,7 @@ import udb.edu.sv.controller.dto.response.rutina.RutinaRealizadaResponse;
 import udb.edu.sv.repository.domain.DetalleRutinaRealizada;
 import udb.edu.sv.repository.domain.RutinaRealizada;
 
-import java.time.DayOfWeek;
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
 
 @Mapper(componentModel = "spring")
 public interface RutinaRealizadaMapper {
@@ -21,9 +18,8 @@ public interface RutinaRealizadaMapper {
 
     List<RutinaRealizadaResponse> toRutinaRealizadaResponseList(List<RutinaRealizada> rutinas);
 
-    @Mapping(source = "parteAnatomica.nombre", target = "parteAnatomica")
+    @Mapping(source = "parteAnatomica.id", target = "parteAnatomica")
     @Mapping(source = "detalle", target = "detalle", qualifiedByName = "toListaDetalle")
-    @Mapping(source = "diaSemana", target = "diaSemana", qualifiedByName = "traducirDiaSemana")
     RutinaRealizadaResponse toRutinaRealizadaResponse(RutinaRealizada rutina);
 
     @Mapping(target = "parteAnatomica", ignore = true)
@@ -39,8 +35,4 @@ public interface RutinaRealizadaMapper {
         ).toList();
     }
 
-    @Named("traducirDiaSemana")
-    default String traducirDiaSemana(DayOfWeek dia) {
-        return dia.getDisplayName(TextStyle.FULL, Locale.getDefault());
-    }
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 @Entity
@@ -15,9 +14,7 @@ public class RutinaRealizada extends RutinaBase<DetalleRutinaRealizada>{
     @Column(nullable = false)
     private Integer tiempoRealizacion;
 
-    private boolean estado;
-
-    private DayOfWeek diaSemana;
+    private Integer diaSemana;
 
     private LocalDate fechaRealizacion;
 }

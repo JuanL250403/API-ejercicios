@@ -4,10 +4,12 @@ import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import udb.edu.sv.controller.dto.response.ejercicio.EjercicioResponseBase;
 
+import java.util.UUID;
+
 @Data
 @SuperBuilder
 public abstract class DetalleRutinaResponseBase<E extends EjercicioResponseBase> {
-    private Long id;
+    private UUID id;
 
     private E ejercicio;
 }

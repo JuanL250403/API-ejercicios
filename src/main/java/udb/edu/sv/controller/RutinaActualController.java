@@ -14,13 +14,13 @@ import java.util.List;
 public class RutinaActualController {
     private final RutinaActualService rutinaActualService;
 
-    @GetMapping("/{idUsuario}")
-    public List<RutinaActualResponse> obtenerRutinasUsuario(@PathVariable("idUsuario") Long id) {
-        return rutinaActualService.obtenerRutinasUsuario(id);
+    @GetMapping()
+    public List<RutinaActualResponse> obtenerRutinasUsuario() {
+        return rutinaActualService.obtenerRutinasUsuario();
     }
 
-    @PostMapping("/{idUsuario}")
-    public List<RutinaActualResponse> sincronizarRutinas(@RequestBody List<RutinaActualRequest> rutina, @PathVariable("idUsuario") Long id) {
-        return rutinaActualService.sincronizarRutinas(id, rutina);
-    }
+    @PostMapping()
+    public List<RutinaActualResponse> sincronizarRutinas(@RequestBody List<RutinaActualRequest> rutina) {
+        return rutinaActualService.sincronizarRutinas(rutina);
+    }   
 }

@@ -13,5 +13,5 @@ public class RutinaRealizadaResponse extends RutinaResponseBase<DetalleRutinaRea
 
     private LocalDate fechaRealizacion;
 
-    private String diaSemana;
+    private Integer diaSemana;
 }
